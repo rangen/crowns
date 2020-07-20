@@ -15,12 +15,11 @@ export default class MapContainer extends Component {
 
   createGoogleMap = () =>
     new window.google.maps.Map(this.googleMapRef.current, {
-      zoom: 4,
-      center: {
-        lat: 43.642567,
-        lng: -79.387054,
-      },
-      disableDefaultUI: true,
+        center: {
+            lat: 41.2672,
+            lng: -97.7431
+          },
+          zoom: 4
     })
 
   render() {
@@ -28,7 +27,7 @@ export default class MapContainer extends Component {
       <div
         id="google-map"
         ref={this.googleMapRef}
-        style={{ width: '400px', height: '300px' }}
+        style={{ width: '100%', height: '90vh' }}
       />
     )
   }

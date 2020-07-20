@@ -5,7 +5,7 @@ export default class MainContainer extends PureComponent {
     render() {
         return (
             <div>
-                <MapContainer />
+                <MapContainer polygon={this.props.polygon} />
             </div>
         )
     }
