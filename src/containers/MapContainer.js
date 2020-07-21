@@ -31,6 +31,12 @@ export default class MapContainer extends Component {
   render() {
     if (this.props.polygon && this.googleMap) {
         this.googleMap.data.forEach((f)=>this.googleMap.data.remove(f))
+        this.googleMap.data.setStyle((f) => {
+          return {
+            fillColor: this.props.color,
+            strokeColor: this.props.color
+          }
+        })
         this.googleMap.data.addGeoJson(this.props.polygon)
 
         let bounds = new window.google.maps.LatLngBounds(); 
@@ -42,7 +48,6 @@ export default class MapContainer extends Component {
         });
 
         this.googleMap.fitBounds(bounds);
-        debugger
     }
     return (
       <div

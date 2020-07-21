@@ -8,8 +8,10 @@ import api from './services/api'
 class App extends React.PureComponent {
   state = {
     polygon: null,
-    normalizedAddress: null,
-    politicians: null
+    politicians: null,
+    cookIndex: {
+      value: null
+    }
   }
 
   newAddress = (e) => {
@@ -23,7 +25,9 @@ class App extends React.PureComponent {
 
   setAddress = (data) => {
     this.setState({
-      polygon: data.district_geo_json || null,
+      polygon: data.districtGeoJson || null,
+      addressInfo: data.addressInfo,
+      cookIndex: data.cookIndex,
       politicians: {
         reps: data.reps || null,
         senators: data.senators || null
@@ -42,7 +46,7 @@ class App extends React.PureComponent {
             <Sidebar />
           </div>
           <div className='thirteen wide column'>
-            <MainContainer polygon={this.state.polygon} />
+            <MainContainer cookIndex={this.state.cookIndex.value} polygon={this.state.polygon} />
           </div>
         </div>
       </div>
