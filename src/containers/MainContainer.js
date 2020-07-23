@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import MapContainer from './MapContainer'
+import TwitterContainer from './TwitterContainer'
 
 export default class MainContainer extends PureComponent {
 
@@ -30,7 +31,8 @@ export default class MainContainer extends PureComponent {
     render() {
         return (
             <div>
-                <MapContainer color={this.fillColor()} polygon={this.props.polygon} />
+                {/* <MapContainer color={this.fillColor()} polygon={this.props.polygon} /> */}
+                <TwitterContainer />
             </div>
         )
     }

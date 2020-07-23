@@ -34,7 +34,8 @@ export default class MapContainer extends Component {
         this.googleMap.data.setStyle((f) => {
           return {
             fillColor: this.props.color,
-            strokeColor: this.props.color
+            strokeColor: this.props.color,
+            strokeWeight: 2
           }
         })
         this.googleMap.data.addGeoJson(this.props.polygon)
