@@ -1,6 +1,6 @@
-import React, { Component, createRef } from 'react'
+import React, { PureComponent, createRef } from 'react'
 
-export default class MapContainer extends Component {
+export default class MapContainer extends PureComponent {
   googleMapRef = createRef()
 
   

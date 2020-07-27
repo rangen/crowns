@@ -1,77 +1,65 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import './App.css';
+import PropTypes from 'prop-types'
 
 import Sidebar from './containers/Sidebar'
 import Header from './containers/Header'
 import MainContainer from './containers/MainContainer'
 import api from './services/api'
-
-class App extends React.PureComponent {
-  state = {
-    polygon: null,
-    politicians: {
-      senators: null,
-      reps: null
-    },
-    cookIndex: {
-      value: null
-    },
-    validAddress: false
-  }
-
-  newAddress = (e) => {
+        
+  const newAddress = (e) => {
     e.preventDefault()
     const address = document.getElementById('addressField').value
     
     api.search(address)
       .then(resp=>this.checkAddress(resp))    
   }
-
-  checkAddress = (resp) => {
+        
+  const checkAddress = (resp) => {
     if (resp.status === 400) {
       // bad address, retry and alert
-      this.setState({
-        validAddress: false,
-        polygon: null
-      })
+      
     } else if (resp.status === 200) {
       resp.json()
         .then(json=>this.setAddress(json))
     }
   }
-
-  setAddress = (data) => {
-    this.setState({
-      validAddress: true,
-      polygon: data.districtGeoJson || null,
-      addressInfo: data.addressInfo,
-      cookIndex: data.cookIndex,
-      politicians: {
-        reps: data.reps || null,
-        senators: data.senators || null
-      }
-    })
+  
+  const setAddress = (data) => {
+    //valid address   update store!
   }
 
-  render(){
-    return (
+const App = () => (
+  // static propTypes = {
+  //   addressEntered: PropTypes.bool.isRequired,
+  //   validAddress: PropTypes.bool,
+  //   selectedPolitician: PropTypes.object
+  // }
       <div className="ui grid container sixteen column">
         <div className='row'>
-          <Header search={this.newAddress} />
+          <Header />
         </div>
         <div className='row'>
           <div className='three wide column'>
-            <Sidebar reps={this.state.politicians.reps} senators={this.state.politicians.senators}/>
+            <Sidebar />
           </div>
           <div className='thirteen wide column'>
-            <MainContainer cookIndex={this.state.cookIndex.value} polygon={this.state.polygon} />
+            <MainContainer />
           </div>
         </div>
       </div>
-    )
+)
+  
+
+const mapStateToProps = state => {
+  const { politicianSelected, enteredAddress  } = state
+
+  return {
+    politicianSelected,
+    enteredAddress
   }
 }
 
 
-export default App;
+export default connect(mapStateToProps)(App);

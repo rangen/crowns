@@ -1,28 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { TwitterTweetEmbed } from 'react-twitter-embed'
 
-export default class TwitterContainer extends Component {
+const TwitterContainer = ({tweets}) => (
+  <>
+  {tweets.map((tweet, i) =>
+    <TwitterTweetEmbed key={i} tweetId={tweet.id} />
+  )}
+  </>
+)
 
-  state = {
-    id: '1270326604603031552'
-  }
-
-  componentWillMount() {
-    // setInterval(this.toggleTweetID, 5000)
-  }
-
-  toggleTweetID = () => {
-    this.setState({
-      id: (this.state.id === '1151945343690579970' ? '1270326604603031552' : '1151945343690579970') 
-    })
-  }
-
-  render() {
-    return (
-        <>
-            <TwitterTweetEmbed key={this.state.id} tweetId={this.state.id} />
-            <TwitterTweetEmbed key={this.state.id} tweetId={this.state.id} />
-        </>
-    )
-  }
+TwitterContainer.propTypes = {
+  tweets: PropTypes.array.isRequired
 }
+
+export default TwitterContainer
+
+    // state = {
+    //   id: '1270326604603031552'
+    // }
