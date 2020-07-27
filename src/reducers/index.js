@@ -20,9 +20,10 @@ const createAcct = (acct) => {
 const addressReducer = (state = {}, action) => {
   switch (action.type) {
     case PROCESS_DATA:
-      const { cookIndex, districtGeoJson, reps, senators } = action.json
+      const { cookIndex, districtGeoJson } = action.json
+      if (!districtGeoJson) { return {validAddress: false}}    //refactor but works
+
       const { normalized_address, when_is_primary, district } = action.json.addressInfo
-      
       return {
         ...state,
         checking: false,
@@ -74,8 +75,6 @@ const twitterReducer = (state = {}, action) => {
       return state
   }
 }
-
-
 
 
 const rootReducer = combineReducers({
