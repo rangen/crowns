@@ -3,8 +3,6 @@ import React, { PureComponent, createRef } from 'react'
 export default class MapContainer extends PureComponent {
   googleMapRef = createRef()
 
-  
-
   componentDidMount() {
     const googleScript = document.createElement('script')
     googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS}`

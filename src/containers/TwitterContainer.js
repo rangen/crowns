@@ -1,23 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { TwitterTweetEmbed } from 'react-twitter-embed'
+import { useSelector } from 'react-redux'
+import { Select, MenuItem } from '@material-ui/core'
 
-const TwitterContainer = ({ }) => (
-  <>
-  {/* {tweets.map((tweet, i) =>
-    <TwitterTweetEmbed key={i} tweetId={tweet.id} />
-  )} */}
-  </>
-)
-
-const mapStateToProps = state => {
-  const selectedPol = state.selected
-  const accounts = state.twitterAccounts
-
-  return {
-    selectedPol,
-    accounts
-  }
+const TwitterContainer = () => {
+  const accounts = useSelector(s=>s.selected.twitterAccounts)
+  return (
+    <>
+      <Select value={accounts[0]}>
+        {accounts.map(a=><MenuItem value={a}>{a}</MenuItem>)}
+      </Select>
+    </>
+  )
 }
 
-export default connect(mapStateToProps)(TwitterContainer)
+export default TwitterContainer
