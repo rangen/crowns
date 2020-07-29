@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
+
 import {
-  PROCESS_DATA, TRACK_ADDRESS, FETCHING_ADDRESS
+  PROCESS_DATA, TRACK_ADDRESS, FETCHING_ADDRESS, SELECT_POLITICIAN, SELECT_ACCOUNT
 } from '../actions'
 
 const createPol = (pol) => {
@@ -21,9 +22,10 @@ const addressReducer = (state = {}, action) => {
   switch (action.type) {
     case PROCESS_DATA:
       const { cookIndex, districtGeoJson } = action.json
-      if (!districtGeoJson) { return {validAddress: false}}    //refactor but works
+      if (!districtGeoJson) { return {validAddress: false}}    //refactor but works, would prefer to check response.status in fetch
 
       const { normalized_address, when_is_primary, district } = action.json.addressInfo
+
       return {
         ...state,
         checking: false,
@@ -68,8 +70,35 @@ const twitterReducer = (state = {}, action) => {
       const senatorAccounts = !!action.json.senators ? action.json.senators.included.map(s=>createAcct(s)) : []
       const repAccounts = !!action.json.reps ? action.json.reps.included.map(r=>createAcct(r)) : []
 
-      return {
+      return [
         ...senatorAccounts.concat(repAccounts)
+      ]
+    default:
+      return state
+  }
+}
+
+const selectedReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SELECT_ACCOUNT:
+      return {
+        ...state
+      }
+    case SELECT_POLITICIAN:
+      return {
+        ...action.selected
+      }
+    default:
+      return state
+  }
+}
+
+const viewReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SELECT_POLITICIAN:
+      return {
+        ...state,
+        mainContainer: 'politician'
       }
     default:
       return state
@@ -80,7 +109,9 @@ const twitterReducer = (state = {}, action) => {
 const rootReducer = combineReducers({
   address: addressReducer,
   politicians: politicianReducer,
-  twitterAccounts: twitterReducer
+  twitterAccounts: twitterReducer,
+  selected: selectedReducer,
+  view: viewReducer
 })
 
 export default rootReducer

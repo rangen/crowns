@@ -7,19 +7,10 @@ import reducer from './reducers'
 const initialState = {
     address: {
       validAddress: false,
+    },
+    view: {
+      mainContainer: 'map'
     }
-    // },
-    // selectedPol: {
-    //   politicianSelected: false,
-    //   isSenator: null,
-    //   politicianID: null,
-    //   twitterAccountID: null
-    // },
-    // pols: {
-    //   senators: [],
-    //   reps: []
-    // },
-    // twitterAccounts: []
 }
 
 const middleware = [ thunk ]

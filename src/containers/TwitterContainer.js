@@ -1,21 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { TwitterTweetEmbed } from 'react-twitter-embed'
 
-const TwitterContainer = ({tweets}) => (
+const TwitterContainer = ({ }) => (
   <>
-  {tweets.map((tweet, i) =>
+  {/* {tweets.map((tweet, i) =>
     <TwitterTweetEmbed key={i} tweetId={tweet.id} />
-  )}
+  )} */}
   </>
 )
 
-TwitterContainer.propTypes = {
-  tweets: PropTypes.array.isRequired
+const mapStateToProps = state => {
+  const selectedPol = state.selected
+  const accounts = state.twitterAccounts
+
+  return {
+    selectedPol,
+    accounts
+  }
 }
 
-export default TwitterContainer
-
-    // state = {
-    //   id: '1270326604603031552'
-    // }
+export default connect(mapStateToProps)(TwitterContainer)

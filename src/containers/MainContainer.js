@@ -1,6 +1,6 @@
 import React from 'react'
 import MapContainer from './MapContainer'
-import TwitterContainer from './TwitterContainer'
+import PoliticianContainer from './PoliticianContainer'
 import { connect } from 'react-redux'
 
 const fillColor = (cookIndex) => {
@@ -26,17 +26,22 @@ const fillColor = (cookIndex) => {
     return colors[index]
 }
 
-const MainContainer = ({ polygon, cookIndex }) => (
-            <>
-                {/* <MapContainer color={cookIndex ? fillColor(cookIndex) : null} polygon={polygon} /> */}
-                {/* <TwitterContainer /> */}
-            </>
+const MainContainer = ({ mainContainer, polygon, cookIndex }) => (
+    <>
+        {mainContainer === 'map' && 
+            <MapContainer 
+                color={cookIndex ? fillColor(cookIndex) : null} 
+                polygon={polygon} />}
+        {mainContainer === 'politician' &&
+            <PoliticianContainer />}
+    </>
 )
 
 const mapStateToProps = state => {
     const { cookIndex, polygon  } = state.address
-
+    const { mainContainer } = state.view
     return {
+        mainContainer,
         cookIndex,
         polygon
     }

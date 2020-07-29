@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import './App.css';
-import PropTypes from 'prop-types'
+import { Grid } from '@material-ui/core'
 
 import Sidebar from './containers/Sidebar'
 import Header from './containers/Header'
@@ -13,19 +13,21 @@ const App = () => (
   //   validAddress: PropTypes.bool,
   //   selectedPolitician: PropTypes.object
   // }
-      <div className="ui grid container sixteen column">
-        <div className='row'>
+      <>
+        <div className='flex-no-shrink'>
           <Header />
         </div>
-        <div className='row'>
-          <div className='three wide column'>
-            <Sidebar />
-          </div>
-          <div className='thirteen wide column'>
+        <Grid container >
+          <Grid
+              item sm={3} >
+              <Sidebar />
+          </Grid>
+          <Grid 
+            item sm={9} >
             <MainContainer />
-          </div>
-        </div>
-      </div>
+          </Grid>
+        </Grid>
+      </>
 )
 
 const mapStateToProps = state => {
