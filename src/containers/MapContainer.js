@@ -29,6 +29,7 @@ export default class MapContainer extends PureComponent {
     })
 
   render() {
+    debugger
     if (this.props.polygon && this.googleMap) {
         this.googleMap.data.forEach((f)=>this.googleMap.data.remove(f))
         this.googleMap.data.setStyle((f) => {

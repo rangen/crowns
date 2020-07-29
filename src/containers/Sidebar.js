@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 import { Card, Icon } from 'semantic-ui-react'
-import { acctSelected, polSelected } from '../actions'
+import { acctSelected, polSelected, returnToMap } from '../actions'
 
 
 
-const Sidebar = ({ polSelected, acctSelected }) => {
+const Sidebar = ({ polSelected, returnToMap }) => {
     
     const genAccountInfo = (accounts) => {
         if (!accounts.length) {
@@ -45,6 +45,7 @@ const Sidebar = ({ polSelected, acctSelected }) => {
     const pols = useSelector(s=>s.politicians)
     const address = useSelector(s=>s.address)
     const accounts = useSelector(s=>s.twitterAccounts)
+    const view = useSelector(s=>s.view.mainContainer)
 
     const { reps, senators } = pols
     const { district, stateName } = address
@@ -52,6 +53,9 @@ const Sidebar = ({ polSelected, acctSelected }) => {
 
     return (
         <>
+            {view === 'politician' &&   
+                <button onClick={returnToMap}>Return to Map View</button>
+            }
             {senators && !!senators.length &&
                 <>
                     <h3>{stateName + ' Senate'}</h3>
@@ -85,7 +89,8 @@ const Sidebar = ({ polSelected, acctSelected }) => {
 const mapDispatchToProps = dispatch => {
     return {
         polSelected: e => dispatch(polSelected(e)),
-        acctSelected: e => dispatch(acctSelected(e))
+        acctSelected: e => dispatch(acctSelected(e)),
+        returnToMap: e => dispatch(returnToMap())
     }
 }
 

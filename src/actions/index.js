@@ -6,6 +6,7 @@ export const PROCESS_DATA = 'PROCESS_DATA'
 export const TRACK_ADDRESS = 'TRACK_ADDRESS'
 export const FETCHING_ADDRESS = 'FETCHING_ADDRESS'
 export const SELECT_ACCOUNT = 'SELECT_ACCOUNT'
+export const MAP_RETURN = 'MAP_RETURN'
 
 export const trackEntry = address => ({
   type: TRACK_ADDRESS,
@@ -21,6 +22,10 @@ export const polSelected = (target) => {
       })
   }
 }
+
+export const returnToMap = () => ({
+  type: MAP_RETURN
+})
 
 export const acctSelected = (acctID) => {
   return (dispatch, getState) => {
