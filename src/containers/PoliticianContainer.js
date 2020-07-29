@@ -7,6 +7,7 @@ const PoliticianContainer = () => {
   return (
     <>
       <h3>{pol.candidateName}</h3>
+      <h3>{}</h3>
     </>
   )
 }

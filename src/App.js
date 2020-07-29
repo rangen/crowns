@@ -8,22 +8,18 @@ import Header from './containers/Header'
 import MainContainer from './containers/MainContainer'
 
 const App = () => (
-  // static propTypes = {
-  //   addressEntered: PropTypes.bool.isRequired,
-  //   validAddress: PropTypes.bool,
-  //   selectedPolitician: PropTypes.object
-  // }
+
       <>
-        <div className='flex-no-shrink'>
-          <Header />
-        </div>
-        <Grid container >
-          <Grid
-              item sm={3} >
-              <Sidebar />
+        <Grid container>
+          <Grid item xs={12}>
+            <Header />
           </Grid>
-          <Grid 
-            item sm={9} >
+        </Grid>
+        <Grid container>
+          <Grid item className='flex-col-scroll' xs={3}>
+            <Sidebar />
+          </Grid>
+          <Grid item className='flex-col-scroll' xs={9}>
             <MainContainer />
           </Grid>
         </Grid>

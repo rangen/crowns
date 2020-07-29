@@ -32,8 +32,6 @@ export const acctSelected = (acctID) => {
   }
 }
 
-
-
 export const checkAddress = (address) => {
   return (dispatch) => {
     dispatch({type: FETCHING_ADDRESS })

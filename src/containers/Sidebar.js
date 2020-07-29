@@ -5,7 +5,7 @@ import { acctSelected, polSelected } from '../actions'
 
 
 
-const Sidebar = () => {
+const Sidebar = ({ polSelected, acctSelected }) => {
     
     const genAccountInfo = (accounts) => {
         if (!accounts.length) {
@@ -51,7 +51,7 @@ const Sidebar = () => {
     
 
     return (
-        <div>
+        <>
             {senators && !!senators.length &&
                 <>
                     <h3>{stateName + ' Senate'}</h3>
@@ -78,7 +78,7 @@ const Sidebar = () => {
                 <h3>Enter an address above to view your politicians</h3>
 
             }
-        </div>
+        </>
     )
 }
 
