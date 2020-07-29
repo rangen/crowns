@@ -15,14 +15,16 @@ const App = () => (
             <Header />
           </Grid>
         </Grid>
+        <div style={{padding: '70px'}}>
         <Grid container>
-          <Grid item className='flex-col-scroll' xs={3}>
+          <Grid item className='flex-col-scroll' xs={3} style={{height: '90vh'}}>
             <Sidebar />
           </Grid>
-          <Grid item className='flex-col-scroll' xs={9}>
+          <Grid item className='flex-col-scroll' xs={9} style={{height: '90vh'}}>
             <MainContainer />
           </Grid>
         </Grid>
+        </div>
       </>
 )
 
