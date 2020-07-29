@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 import { Card, Icon } from 'semantic-ui-react'
-import { acctSelected, polSelected, returnToMap } from '../actions'
+import { polSelected, returnToMap } from '../actions'
 
 
 
@@ -89,7 +89,6 @@ const Sidebar = ({ polSelected, returnToMap }) => {
 const mapDispatchToProps = dispatch => {
     return {
         polSelected: e => dispatch(polSelected(e)),
-        acctSelected: e => dispatch(acctSelected(e)),
         returnToMap: e => dispatch(returnToMap())
     }
 }

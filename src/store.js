@@ -9,7 +9,8 @@ const initialState = {
       validAddress: false,
     },
     view: {
-      mainContainer: 'map'
+      mainContainer: 'map',
+      tabIndex: 0
     }
 }
 

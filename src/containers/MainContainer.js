@@ -28,10 +28,11 @@ const fillColor = (cookIndex) => {
 
 const MainContainer = ({ mainContainer, polygon, cookIndex }) => (
     <>
-        {mainContainer === 'map' && 
+        <div style={{display: (mainContainer === 'map' ? 'inline' : 'none')}}>
             <MapContainer 
                 color={cookIndex ? fillColor(cookIndex) : null} 
-                polygon={polygon} />}
+                polygon={polygon} />
+        </div>
         {mainContainer === 'politician' &&
             <PoliticianContainer />}
     </>

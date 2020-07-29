@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import {
-  PROCESS_DATA, TRACK_ADDRESS, FETCHING_ADDRESS, SELECT_POLITICIAN, SELECT_ACCOUNT, MAP_RETURN
+  PROCESS_DATA, TRACK_ADDRESS, FETCHING_ADDRESS, SELECT_POLITICIAN, SELECT_ACCOUNT, MAP_RETURN, CHANGE_TAB
 } from '../actions'
 
 const createPol = (pol) => {
@@ -104,6 +104,11 @@ const viewReducer = (state = {}, action) => {
       return {
         ...state,
         mainContainer: 'map'
+      }
+    case CHANGE_TAB:
+      return {
+        ...state,
+        tabIndex: action.val
       }
     default:
       return state

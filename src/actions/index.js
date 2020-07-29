@@ -7,6 +7,7 @@ export const TRACK_ADDRESS = 'TRACK_ADDRESS'
 export const FETCHING_ADDRESS = 'FETCHING_ADDRESS'
 export const SELECT_ACCOUNT = 'SELECT_ACCOUNT'
 export const MAP_RETURN = 'MAP_RETURN'
+export const CHANGE_TAB = 'CHANGE_TAB'
 
 export const trackEntry = address => ({
   type: TRACK_ADDRESS,
@@ -15,7 +16,7 @@ export const trackEntry = address => ({
 
 export const polSelected = (target) => {
   return (dispatch, getState) => {
-    
+    dispatch({type: CHANGE_TAB, val: 0})    
     dispatch({
       type: SELECT_POLITICIAN,
       selected: getState().politicians[target.branch].find(p=>p.id === target.id)
@@ -27,18 +28,14 @@ export const returnToMap = () => ({
   type: MAP_RETURN
 })
 
-export const acctSelected = (acctID) => {
-  return (dispatch, getState) => {
-    
-    dispatch({
-      type: SELECT_ACCOUNT,
-      selected: getState().twitterAccounts.find(a=>a.id === acctID)
-      })
-  }
-}
+export const changeTab = (val) => ({
+  type: CHANGE_TAB,
+  val
+})
 
 export const checkAddress = (address) => {
   return (dispatch) => {
+    dispatch({type: MAP_RETURN })
     dispatch({type: FETCHING_ADDRESS })
     
     api.search(address)
