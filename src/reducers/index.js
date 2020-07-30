@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import {
-  PROCESS_DATA, TRACK_ADDRESS, FETCHING_ADDRESS, SELECT_POLITICIAN, SELECT_ACCOUNT, MAP_RETURN, CHANGE_TAB
+  PROCESS_DATA, TRACK_ADDRESS, FETCHING_ADDRESS, SELECT_POLITICIAN, SELECT_ACCOUNT, MAP_RETURN, CHANGE_TAB, PER_PAGE, CHANGE_PAGE
 } from '../actions'
 
 const createPol = (pol) => {
@@ -98,7 +98,8 @@ const viewReducer = (state = {}, action) => {
     case SELECT_POLITICIAN:
       return {
         ...state,
-        mainContainer: 'politician'
+        mainContainer: 'politician',
+        selectedAccount: 'select'
       }
     case MAP_RETURN:
       return {
@@ -109,6 +110,26 @@ const viewReducer = (state = {}, action) => {
       return {
         ...state,
         tabIndex: action.val
+      }
+    case SELECT_ACCOUNT:
+      return {
+        ...state,
+        selectedAccount: action.val,
+        totalTweets: action.total,
+        totalPages: Math.ceil(action.total / state.perPage)
+      }
+    case PER_PAGE:
+      const total = Math.ceil(state.totalTweets / action.val)
+      return {
+        ...state,
+        perPage: action.val,
+        totalPages: total,
+        pageIndex: Math.min(state.pageIndex, total)
+      }
+    case CHANGE_PAGE:
+      return {
+        ...state,
+        pageIndex: action.val
       }
     default:
       return state

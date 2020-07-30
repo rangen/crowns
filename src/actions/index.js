@@ -8,6 +8,8 @@ export const FETCHING_ADDRESS = 'FETCHING_ADDRESS'
 export const SELECT_ACCOUNT = 'SELECT_ACCOUNT'
 export const MAP_RETURN = 'MAP_RETURN'
 export const CHANGE_TAB = 'CHANGE_TAB'
+export const PER_PAGE = 'PER_PAGE'
+export const CHANGE_PAGE = 'CHANGE_PAGE'
 
 export const trackEntry = address => ({
   type: TRACK_ADDRESS,

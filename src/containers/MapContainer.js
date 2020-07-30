@@ -1,7 +1,6 @@
-import React, { PureComponent, createRef } from 'react'
+import React, { PureComponent } from 'react'
 
 export default class MapContainer extends PureComponent {
-  googleMapRef = createRef()
 
   componentDidMount() {
     const googleScript = document.createElement('script')
@@ -14,7 +13,7 @@ export default class MapContainer extends PureComponent {
   }
 
   createGoogleMap = () =>
-    new window.google.maps.Map(this.googleMapRef.current, {
+    new window.google.maps.Map(document.getElementById('google-map'), {
         center: {
             lat: 41.2672,
             lng: -97.7431
@@ -52,7 +51,6 @@ export default class MapContainer extends PureComponent {
     return (
       <div
         id="google-map"
-        ref={this.googleMapRef}
         style={{ width: '100%', height: '90vh' }}
       />
     )
