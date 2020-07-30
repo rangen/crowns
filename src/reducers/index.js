@@ -99,7 +99,8 @@ const viewReducer = (state = {}, action) => {
       return {
         ...state,
         mainContainer: 'politician',
-        selectedAccount: 'select'
+        selectedAccount: 'select',
+        pageIndex: 1
       }
     case MAP_RETURN:
       return {
