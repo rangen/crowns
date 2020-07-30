@@ -17,7 +17,7 @@ const Sidebar = ({ polSelected, returnToMap }) => {
                 {accounts.map(t=> 
                     <>
                         <div>
-                            <Icon fitted name='twitter' />{t.handle}
+                            <Icon name='twitter' />{t.handle}
                         </div>
                     </>
                 )}
@@ -27,19 +27,20 @@ const Sidebar = ({ polSelected, returnToMap }) => {
     }
 
     const genCard = (obj, isSenator = false) => {
-        const { candidateName, incumbent, onBallot, party, photoUrl, hasTweets, twitterAccounts, id } = obj
+        const { candidateName, incumbent, party, hasTweets, twitterAccounts, id } = obj
         
         
         let theseAccounts = [];
         if (hasTweets) {theseAccounts = [...accounts].filter(a=>twitterAccounts.includes(a.id))} // get only this POL twitterAccounts
         
         return <Card 
-                fluid
+                
                 onClick={()=>polSelected({branch: (isSenator ? 'senators' : 'reps'), id: id})}
                 color={party === 'DEM' ? 'blue' : 'red'}
                 header={candidateName}
-                // meta={isSenator ? '(Senate)' : '(House)'}
+                meta={incumbent === 'I' ? (<div><Icon color='yellow' name='chess queen' />Incumbent</div>) : (<div><Icon color='black' name='chess pawn' />Challenger</div>)}
                 description={genAccountInfo(theseAccounts)}
+                extra={party === 'DEM' ? 'Democrat' : party === 'REP' ? 'Republican' : party}
                 />
     }
     const pols = useSelector(s=>s.politicians)
@@ -60,7 +61,7 @@ const Sidebar = ({ polSelected, returnToMap }) => {
                 <>
                     <h3>{stateName + ' Senate'}</h3>
                     <hr />
-                    <Card.Group>
+                    <Card.Group centered>
                         {senators.map(r=>
                                 genCard(r, true)
                             )}
@@ -71,7 +72,7 @@ const Sidebar = ({ polSelected, returnToMap }) => {
                 <>
                     <h3>{district}</h3>
                     <hr />
-                    <Card.Group>
+                    <Card.Group centered>
                         {reps.map(r=>
                                 genCard(r)
                             )}
@@ -79,8 +80,11 @@ const Sidebar = ({ polSelected, returnToMap }) => {
                 </>
             }
             {!reps &&
-                <h3>Enter an address above to view your politicians</h3>
-
+                <>
+                    <h3>Pile of Crowns</h3>
+                    <h4>A Flatiron Project</h4>
+                    <h5>by Don Mallory</h5>
+                </>
             }
         </>
     )

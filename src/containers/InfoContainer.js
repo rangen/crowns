@@ -13,9 +13,7 @@ const InfoContainer = () => {
   return (
     <>
       <h1>{pol.candidateName}</h1>
-      <img src={pol.photoUrl === 'https://cdn.ballotpedia.org/images/thumb/0/0c/BP-Initials-UPDATED.png/40px-BP-Initials-UPDATED.png' ? 'https://cdn.ballotpedia.org/images/thumb/f/fb/Silhouette_Placeholder_Image.png/150px-Silhouette_Placeholder_Image.png' : pol.photoUrl}></img>
-      {pol.incumbent === 'I' && <h3>Incumbent</h3>}
-
+      <img alt='pic' src={pol.photoUrl === 'https://cdn.ballotpedia.org/images/thumb/0/0c/BP-Initials-UPDATED.png/40px-BP-Initials-UPDATED.png' ? 'https://cdn.ballotpedia.org/images/thumb/f/fb/Silhouette_Placeholder_Image.png/150px-Silhouette_Placeholder_Image.png' : pol.photoUrl}></img>
 
       <Table>
         <TableHead>
@@ -124,7 +122,7 @@ const InfoContainer = () => {
             <TableCell>
               {'Cash on Hand Beginning Cycle'}
             </TableCell>
-            <TableCell>
+            <TableCell align="right">
               {fmtCash(pol.cashOnHandStart)}
             </TableCell>
           </TableRow>
@@ -132,7 +130,7 @@ const InfoContainer = () => {
             <TableCell>
               {`Cash on Hand Last Report (${pol.coverageEndDate})`}
             </TableCell>
-            <TableCell>
+            <TableCell align="right">
               {fmtCash(pol.cashOnHandEnd)}
             </TableCell>
           </TableRow>
@@ -141,7 +139,7 @@ const InfoContainer = () => {
               <TableCell>
                 {'Outstanding Debt for Campaign'}
               </TableCell>
-              <TableCell>
+              <TableCell align="right">
                 {fmtCash(pol.debts)}
               </TableCell>
             </TableRow>}
