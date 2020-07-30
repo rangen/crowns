@@ -24,14 +24,14 @@ const PoliticianContainer = () => {
         <Tab label={pol.candidateName} index={0} />
         {/* <Tab label='Twitter Accounts' disabled={pol.hasTweets ? false : true} index={1} /> */}
         <Tab icon={<Twitter />} disabled={pol.hasTweets ? false : true} index={1} />
-        <Tab label='Tab 1' index={2} />
+        <Tab label='Spread The Word (coming soon)' index={2} />
       </Tabs>
       {tabIndex===0 &&
         <InfoContainer />}
       {tabIndex===1 &&
         <TwitterContainer />}
       {tabIndex===2 &&
-        <h1>politician other etc</h1>}
+        <h1>Share Your Candidate Info on Facebook, Instagram, Twitter or via Email</h1>}
 
     </>
   )

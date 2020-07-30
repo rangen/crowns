@@ -21,8 +21,6 @@ const TweetDisplay = () => {
           {tweetsToShow.map(t=><TweetEmbed id={t} />)}
         </>
       }
-
-        
     </>
   )
 }

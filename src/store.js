@@ -9,7 +9,7 @@ const initialState = {
       validAddress: false,
     },
     view: {
-      mainContainer: 'map',
+      mainContainer: 'politician',
       tabIndex: 0,
       perPage: 5,
       pageIndex: 1
