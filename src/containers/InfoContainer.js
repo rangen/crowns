@@ -90,12 +90,12 @@ const InfoContainer = () => {
             </TableCell>
           </TableRow>
           {(!!pol.individualRefunds || !!pol.commRefunds) && 
-          <>
             <TableRow>
               <TableCell>
                 {'Refunded'}
               </TableCell>
-            </TableRow>
+              <TableCell />
+            </TableRow>}
             {!!pol.individualRefunds &&
             <TableRow>
               <TableCell>
@@ -107,18 +107,18 @@ const InfoContainer = () => {
             </TableRow>}
             {!!pol.commRefunds &&
               <TableRow>
-              <TableCell>
+                <TableCell>
                 {'***Refunded to Other Campaigns'}
-              </TableCell>
+                </TableCell>
               <TableCell align="right">
                 {fmtCash(pol.commRefunds)}
               </TableCell>
             </TableRow>}
-          </>}
           <TableRow>
             <TableCell>
               {'Summary'}
             </TableCell>
+            <TableCell />
           </TableRow>
           <TableRow>
             <TableCell>
@@ -145,14 +145,8 @@ const InfoContainer = () => {
                 {fmtCash(pol.debts)}
               </TableCell>
             </TableRow>}
-
         </TableBody>
       </Table>
-      {`On Hand to Start Cycle: ${pol.cashOnHandStart}`}
-      {`On Hand for Last Report Date: ${pol.cashOnHandEnd}`}
-      
-      {`Campaign Debt: ${pol.debts}`}
-
     </>
   )
 }
