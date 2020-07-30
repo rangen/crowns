@@ -30,16 +30,8 @@ const InfoContainer = () => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell>
-              {'Total Funds Raised'}
-            </TableCell>
-            <TableCell align="right">
-              {fmtCash(pol.totalReceipts)}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              {'***Total Raised from Individuals'}
+            <TableCell style={{fontStyle: 'italic'}}>
+              {'Total Raised from Individuals'}
             </TableCell>
             <TableCell align="right">
               {fmtCash(pol.totalIndividualContributions)}
@@ -47,8 +39,8 @@ const InfoContainer = () => {
           </TableRow>
           {!!pol.contribFromOtherComms && 
           <TableRow>
-            <TableCell>
-              {'***Candidate Raised from other Campaigns'}
+            <TableCell style={{fontStyle: 'italic'}}>
+              {'Candidate Raised from other Campaigns'}
             </TableCell>
             <TableCell align="right">
               {fmtCash(pol.contribFromOtherComms)}
@@ -56,8 +48,8 @@ const InfoContainer = () => {
           </TableRow>}
           {!!pol.contribFromPartyComms && 
           <TableRow>
-            <TableCell>
-              {'***Candidate Raised from Party'}
+            <TableCell style={{fontStyle: 'italic'}}>
+              {'Candidate Raised from Party'}
             </TableCell>
             <TableCell align="right">
               {fmtCash(pol.contribFromPartyComms)}
@@ -65,8 +57,8 @@ const InfoContainer = () => {
           </TableRow>}
           {!!pol.loansFromCandidate && 
           <TableRow>
-            <TableCell>
-              {'***Candidate Loaned to Own Campaign'}
+            <TableCell style={{fontStyle: 'italic'}}>
+              {'Candidate Loaned to Own Campaign'}
             </TableCell>
             <TableCell align="right">
               {fmtCash(pol.loansFromCandidate)}
@@ -74,15 +66,23 @@ const InfoContainer = () => {
           </TableRow>}
           {!!pol.contributionsFromCandidate && 
           <TableRow>
-            <TableCell>
-              {'***Candidate Donated to Own Campaign'}
+            <TableCell style={{fontStyle: 'italic'}}>
+              {'Candidate Donated to Own Campaign'}
             </TableCell>
             <TableCell align="right">
               {fmtCash(pol.contributionsFromCandidate)}
             </TableCell>
           </TableRow>}
           <TableRow>
-            <TableCell>
+            <TableCell style={{fontWeight: 'bold'}}>
+              {'Total Funds Raised'}
+            </TableCell>
+            <TableCell align="right">
+              {fmtCash(pol.totalReceipts)}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell style={{fontWeight: 'bold'}}>
               {'Total Funds Spent'}
             </TableCell>
             <TableCell align="right">
@@ -91,15 +91,15 @@ const InfoContainer = () => {
           </TableRow>
           {(!!pol.individualRefunds || !!pol.commRefunds) && 
             <TableRow>
-              <TableCell>
+              <TableCell style={{fontWeight: 'bold'}}>
                 {'Refunded'}
               </TableCell>
               <TableCell />
             </TableRow>}
             {!!pol.individualRefunds &&
             <TableRow>
-              <TableCell>
-                {'***Refunded to Individuals'}
+              <TableCell style={{fontStyle: 'italic'}}>
+                {'Refunded to Individuals'}
               </TableCell>
               <TableCell align="right">
                 {fmtCash(pol.individualRefunds)}
@@ -107,15 +107,15 @@ const InfoContainer = () => {
             </TableRow>}
             {!!pol.commRefunds &&
               <TableRow>
-                <TableCell>
-                {'***Refunded to Other Campaigns'}
+                <TableCell style={{fontStyle: 'italic'}}>
+                {'Refunded to Other Campaigns'}
                 </TableCell>
               <TableCell align="right">
                 {fmtCash(pol.commRefunds)}
               </TableCell>
             </TableRow>}
           <TableRow>
-            <TableCell>
+            <TableCell style={{fontWeight: 'bold'}}>
               {'Summary'}
             </TableCell>
             <TableCell />
@@ -141,7 +141,7 @@ const InfoContainer = () => {
               <TableCell>
                 {'Outstanding Debt for Campaign'}
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="right" style={{color: 'red'}}>
                 {fmtCash(pol.debts)}
               </TableCell>
             </TableRow>}
