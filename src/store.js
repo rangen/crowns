@@ -11,7 +11,7 @@ const initialState = {
     view: {
       mainContainer: 'map',
       tabIndex: 0,
-      perPage: 5,
+      perPage: 10,
       pageIndex: 1
     }
 }

@@ -68,16 +68,10 @@ const TwitterContainer = () => {
       <FormControl className={classes.formControl}>
         <InputLabel>Tweets Per Page</InputLabel>
         <Select 
-          value={perPage || '5'}
+          value={perPage || '10'}
           autowidth
           onChange={e=>dispatch({type: PER_PAGE, val: +e.target.value})}
           >
-            <MenuItem value='5'>
-              <ListItemIcon>
-                <FormatListNumberedOutlinedIcon />
-              </ListItemIcon>
-            5
-            </MenuItem>
             <MenuItem value='10'>
               <ListItemIcon>
                 <FormatListNumberedOutlinedIcon />
@@ -89,6 +83,12 @@ const TwitterContainer = () => {
                 <FormatListNumberedOutlinedIcon />
               </ListItemIcon>
             25
+            </MenuItem>
+            <MenuItem value='50'>
+              <ListItemIcon>
+                <FormatListNumberedOutlinedIcon />
+              </ListItemIcon>
+            50
             </MenuItem>
         </Select>
       </FormControl>

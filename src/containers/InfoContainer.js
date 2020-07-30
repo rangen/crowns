@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Table, TableBody, TableCell, TableHead, TableRow, TableContainer } from '@material-ui/core'
+import { Grid, Table, TableBody, TableCell, TableHead, TableRow, TableContainer } from '@material-ui/core'
 
 const InfoContainer = () => {
 
@@ -11,10 +11,12 @@ const InfoContainer = () => {
 
   const pol = useSelector(s=>s.selected)
   return (
-    <>
-      <h1>{pol.candidateName}</h1>
-      <img alt='pic' src={pol.photoUrl === 'https://cdn.ballotpedia.org/images/thumb/0/0c/BP-Initials-UPDATED.png/40px-BP-Initials-UPDATED.png' ? 'https://cdn.ballotpedia.org/images/thumb/f/fb/Silhouette_Placeholder_Image.png/150px-Silhouette_Placeholder_Image.png' : pol.photoUrl}></img>
-
+    <Grid container>
+      <Grid item className='flex-col-scroll' xs={4} >
+        <h1>{pol.candidateName}</h1>
+        <img alt='pic' src={pol.photoUrl === 'https://cdn.ballotpedia.org/images/thumb/0/0c/BP-Initials-UPDATED.png/40px-BP-Initials-UPDATED.png' ? 'https://cdn.ballotpedia.org/images/thumb/f/fb/Silhouette_Placeholder_Image.png/150px-Silhouette_Placeholder_Image.png' : pol.photoUrl}></img>
+      </Grid>
+      <Grid item className='flex-col-scroll' xs={8} >
       <Table>
         <TableHead>
           <TableRow>
@@ -145,7 +147,8 @@ const InfoContainer = () => {
             </TableRow>}
         </TableBody>
       </Table>
-    </>
+      </Grid>
+    </Grid>
   )
 }
 
