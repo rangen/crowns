@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import {
-  PROCESS_DATA, TRACK_ADDRESS, FETCHING_ADDRESS, SELECT_POLITICIAN, SELECT_ACCOUNT, MAP_RETURN, CHANGE_TAB, PER_PAGE, CHANGE_PAGE
+  PROCESS_DATA, TRACK_ADDRESS, FETCHING_ADDRESS, SELECT_POLITICIAN, SELECT_ACCOUNT, MAP_RETURN, CHANGE_TAB, PER_PAGE, CHANGE_PAGE, RESET_ADDRESS
 } from '../actions'
 
 const createPol = (pol) => {
@@ -48,6 +48,11 @@ const addressReducer = (state = {}, action) => {
         checking: true,
         validAddress: false
       }
+    case RESET_ADDRESS:
+      return {
+        checking: false,
+        validAddress: false
+      }
     default:
       return state
   }
@@ -59,6 +64,8 @@ const politicianReducer = (state = {}, action) => {
         reps: (!!action.json.reps && action.json.reps.data.map(r=>createPol(r))) || [],
         senators: (!!action.json.senators && action.json.senators.data.map(s=>createPol(s))) || []
       }
+    case RESET_ADDRESS:
+      return {}
     default:
       return state
   }
@@ -102,6 +109,7 @@ const viewReducer = (state = {}, action) => {
         selectedAccount: 'select',
         pageIndex: 1
       }
+    case RESET_ADDRESS:
     case MAP_RETURN:
       return {
         ...state,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Grid, Table, TableBody, TableCell, TableHead, TableRow, TableContainer } from '@material-ui/core'
+import { Grid, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
 
 const InfoContainer = () => {
 
@@ -85,7 +85,7 @@ const InfoContainer = () => {
             <TableCell style={{fontWeight: 'bold'}}>
               {'Total Funds Spent'}
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="right" style={{color: 'red'}}>
               {fmtCash(pol.totalDisbursements)}
             </TableCell>
           </TableRow>

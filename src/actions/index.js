@@ -10,10 +10,15 @@ export const MAP_RETURN = 'MAP_RETURN'
 export const CHANGE_TAB = 'CHANGE_TAB'
 export const PER_PAGE = 'PER_PAGE'
 export const CHANGE_PAGE = 'CHANGE_PAGE'
+export const RESET_ADDRESS = 'RESET_ADDRESS'
 
 export const trackEntry = address => ({
   type: TRACK_ADDRESS,
   address
+})
+
+export const resetEntry = () => ({
+  type: RESET_ADDRESS
 })
 
 export const polSelected = (target) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import './App.css';
 import { Grid } from '@material-ui/core'
 
@@ -7,8 +7,10 @@ import Sidebar from './containers/Sidebar'
 import Header from './containers/Header'
 import MainContainer from './containers/MainContainer'
 
-const App = () => (
+const App = () => {
 
+
+  return (
       <>
         <Grid container>
           <Grid item xs={12}>
@@ -26,16 +28,9 @@ const App = () => (
         </Grid>
         </div>
       </>
-)
-
-const mapStateToProps = state => {
-  const { politicianSelected, enteredAddress  } = state
-
-  return {
-    politicianSelected,
-    enteredAddress
-  }
+  )
 }
 
 
-export default connect(mapStateToProps)(App);
+
+export default App

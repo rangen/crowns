@@ -1,11 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Input, Button, Menu } from 'semantic-ui-react'
-import { trackEntry, checkAddress } from '../actions'
+import { useSelector, useDispatch } from 'react-redux'
+import { Input, Button, Menu, Container } from 'semantic-ui-react'
+import { trackEntry, checkAddress, RESET_ADDRESS } from '../actions'
 
-const Header = ({ dispatch, checking, entered }) => {
+const Header = () => {
+    const dispatch = useDispatch()
+    const { checking, entered, validAddress, normy, district, primaryMsg, cookIndex } = useSelector(s=>s.address)
 
     return (
+        <>
+        {!validAddress &&
         <Menu fixed='top'>
             <form onSubmit={e=> {
                                 e.preventDefault();
@@ -21,22 +25,21 @@ const Header = ({ dispatch, checking, entered }) => {
                     onChange={e=>dispatch(trackEntry(e.target.value))}
                     style={{width:'350px'}}
                     placeholder='Enter a valid US address...' />
-                <Button 
+                <Button basic
                     primary >
                 Show Me
                 </Button>
             </form>
         </Menu>
+        }
+        {validAddress &&
+            <Menu fixed='top'>
+                <Button onClick={e=>dispatch({type: RESET_ADDRESS})} basic primary>Enter New Address</Button>
+                <Container>{`${normy} is in ${district} [${cookIndex}] and the ${primaryMsg}`}</Container>
+            </Menu>
+        }
+        </>
     )
 }
 
-const mapStateToProps = state => {
-    const { checking, entered  } = state.address
-
-    return {
-        checking,
-        entered
-    }
-}
-
-export default connect(mapStateToProps)(Header)
+export default Header

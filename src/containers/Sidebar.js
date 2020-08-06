@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect, useSelector, useDispatch } from 'react-redux'
-import { Card, Icon } from 'semantic-ui-react'
+import { connect, useSelector } from 'react-redux'
+import { Card, Icon, Button } from 'semantic-ui-react'
 import { polSelected, returnToMap } from '../actions'
 
 
@@ -36,7 +36,7 @@ const Sidebar = ({ polSelected, returnToMap }) => {
         return <Card 
                 
                 onClick={()=>polSelected({branch: (isSenator ? 'senators' : 'reps'), id: id})}
-                color={party === 'DEM' ? 'blue' : 'red'}
+                color={party === 'DEM' ? 'blue' : party === 'REP' ? 'red' : 'black'}
                 header={candidateName}
                 meta={incumbent === 'I' ? (<div><Icon color='yellow' name='chess queen' />Incumbent</div>) : (<div><Icon color='black' name='chess pawn' />Challenger</div>)}
                 description={genAccountInfo(theseAccounts)}
@@ -55,7 +55,7 @@ const Sidebar = ({ polSelected, returnToMap }) => {
     return (
         <>
             {view === 'politician' &&   
-                <button onClick={returnToMap}>Return to Map View</button>
+                <Button primary basic onClick={returnToMap}>Return to Map View</Button>
             }
             {senators && !!senators.length &&
                 <>
@@ -81,9 +81,10 @@ const Sidebar = ({ polSelected, returnToMap }) => {
             }
             {!reps &&
                 <>
+                    <img alt='pile of crowns' height='275px' src='crowns.jpeg'></img>
                     <h3>Pile of Crowns</h3>
-                    <h4>A Flatiron Project</h4>
-                    <h5>by Don Mallory</h5>
+                    <h4>a flatiron project</h4>
+                    <h5>Don Mallory</h5>
                 </>
             }
         </>
