@@ -4,7 +4,7 @@ export default class MapContainer extends PureComponent {
 
   componentDidMount() {
     const googleScript = document.createElement('script')
-    googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS}`
+    googleScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyATHZvtmoZF0nhrPZumDtPQzeqgo4jw8Mo`
     window.document.body.appendChild(googleScript)
 
     googleScript.addEventListener('load', () => 
