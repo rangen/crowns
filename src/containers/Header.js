@@ -1,11 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Input, Button, Menu, Container } from 'semantic-ui-react'
-import { trackEntry, checkAddress, RESET_ADDRESS } from '../actions'
+import { Dialog, DialogTitle, DialogContent } from '@material-ui/core'
+import { trackEntry, checkAddress, RESET_ADDRESS, randomAddress } from '../actions'
 
 const Header = () => {
     const dispatch = useDispatch()
-    const { checking, entered, validAddress, normy, district, primaryMsg, cookIndex } = useSelector(s=>s.address)
+    const { checking, entered, validAddress, addressError, normy, district, primaryMsg, cookIndex } = useSelector(s=>s.address)
 
     return (
         <>
@@ -19,18 +20,36 @@ const Header = () => {
                 <Input
                     focus
                     id='addressField'
-                    icon={checking ? 'handshake' : 'home'}
+                    icon='home'
                     value={entered}
+                    error={addressError}
                     iconPosition='left'
                     onChange={e=>dispatch(trackEntry(e.target.value))}
                     style={{width:'350px'}}
                     placeholder='Enter a valid US address...' />
                 <Button basic
                     primary >
-                Show Me
+                Check Address
                 </Button>
             </form>
+            <Button
+                basic
+                primary 
+                onClick={()=>dispatch(randomAddress())}>
+                Random District
+            </Button>
         </Menu>
+        }
+        {checking && 
+            <Dialog
+                open={true}
+            >
+            <DialogTitle>
+            <DialogContent>
+                Searching for address....
+            </DialogContent>
+            </DialogTitle>
+        </Dialog>
         }
         {validAddress &&
             <Menu fixed='top'>

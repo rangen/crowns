@@ -50,3 +50,14 @@ export const checkAddress = (address) => {
       .then(json => dispatch({type: PROCESS_DATA, json}))
   }
 }
+
+export const randomAddress = () => {
+  return (dispatch) => {
+    dispatch({type: MAP_RETURN })
+    dispatch({type: FETCHING_ADDRESS })
+    
+    api.random()
+      .then(response => response.json())
+      .then(json => dispatch({type: PROCESS_DATA, json}))
+  }
+}

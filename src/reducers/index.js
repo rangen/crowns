@@ -22,7 +22,7 @@ const addressReducer = (state = {}, action) => {
   switch (action.type) {
     case PROCESS_DATA:
       const { cookIndex, districtGeoJson } = action.json
-      if (!districtGeoJson) { return {validAddress: false}}    //refactor but works, would prefer to check response.status in fetch
+      if (!districtGeoJson) { return {validAddress: false, addressError: true}}    //refactor but works, would prefer to check response.status in fetch
 
       const { normalized_address, when_is_primary, district } = action.json.addressInfo
 
@@ -30,6 +30,7 @@ const addressReducer = (state = {}, action) => {
         ...state,
         checking: false,
         validAddress: true,
+        addressError: false,
         normy: normalized_address,
         primaryMsg: when_is_primary,
         district: district,

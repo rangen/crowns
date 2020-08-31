@@ -15,14 +15,7 @@ const addressSearch = (address) => {
 }
 
 const randomAddress = () => {
-    const config = {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-            'accept': 'application/json'
-        }
-    }
-    return fetch(`${API_ROOT}/random`, config)
+    return fetch(`${API_ROOT}/random`)
 }
 
 export default {

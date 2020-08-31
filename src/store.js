@@ -7,7 +7,8 @@ import reducer from './reducers'
 const initialState = {
     address: {
       validAddress: null,
-      checking: false
+      checking: false,
+      addressError: false
     },
     view: {
       mainContainer: 'map',
